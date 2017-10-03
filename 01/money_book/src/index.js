@@ -1,8 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 import './index.css'
 
 const MoneyBook = () => {
+
+    const books = [
+        {
+            date: "1/1",
+            item: "お年玉",
+            amount: 10000
+        },
+        {
+            date: "1/3",
+            item: "ケーキ",
+            amount: -500
+        },
+        {
+            date: "2/1",
+            item: "小遣い",
+            amount: 3000
+        },
+        {
+            date: "2/5",
+            item: "マンガ",
+            amount: -600
+        }
+
+    ]
+
     return(
         <div>
             <h1>お小遣い帳</h1>
@@ -16,34 +42,41 @@ const MoneyBook = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1/1</td>
-                        <td>お年玉</td>
-                        <td>10000</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>1/3</td>
-                        <td>ケーキ</td>
-                        <td></td>
-                        <td>500</td>
-                    </tr>
-                    <tr>
-                        <td>2/1</td>
-                        <td>小遣い</td>
-                        <td></td>
-                        <td>3000</td>
-                    </tr>
-                    <tr>
-                        <td>2/5</td>
-                        <td>マンガ</td>
-                        <td></td>
-                        <td>600</td>
-                    </tr>
+                   <MoneyBookItem book={books[0]} />
+                   <MoneyBookItem book={books[1]} />
+                   <MoneyBookItem book={books[2]} />
+                   <MoneyBookItem book={books[3]} />
                 </tbody>
             </table>
         </div>
     )
+}
+
+const MoneyBookItem = (props) => {
+    const { date, item, amount} = props.book
+    if (amount > 0) {
+        return (
+            <tr>
+                <td>{date}</td>
+                <td>{item}</td>
+                <td>{amount}</td>
+                <td></td>
+            </tr>
+        )
+    } else {
+        return (
+            <tr>
+                <td>{date}</td>
+                <td>{item}</td>
+                <td></td>
+                <td>{-amount}</td>
+            </tr>
+        )
+    }
+}
+
+MoneyBookItem.propTypes = {
+    book: PropTypes.object.isRequired
 }
 
 ReactDOM.render(
