@@ -1,0 +1,21 @@
+<div class="mermaid">
+graph TB
+    subgraph コンポーネントの生成とマウント
+        A[constructor] --> B[componentWillMount]
+        B --> C[render]
+        C --> D[componentDidMount]
+    end
+
+    subgraph コンポーネントの利用
+        D --> E[コンポーネントを利用]
+    end
+
+    subgraph コンポーネントの状態変化
+        E --> F[compoenntWillReceriveProps]
+        F --> G[shouldComponentUpdate]
+    end
+
+    subgraph コンポーネントのアンマウント破棄
+        E --> Z[compoenentWillUnmount]
+    end
+</div> 
